@@ -12,8 +12,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.hospitally.ui.screens.HomeScreen
 import com.example.hospitally.ui.theme.AppTheme
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
