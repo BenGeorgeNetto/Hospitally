@@ -17,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
     val db = Firebase.firestore
+    val navController = rememberNavController()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

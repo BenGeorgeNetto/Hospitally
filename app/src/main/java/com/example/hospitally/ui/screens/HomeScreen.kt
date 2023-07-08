@@ -7,37 +7,56 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hospitally.ui.theme.AppTheme
 
 @Composable
-fun HomeScreen() {
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        "Hospitally",
-                        style = MaterialTheme.typography.headlineLarge.copy(
-                            fontWeight = FontWeight.Black,
-                        ),
-                        modifier = Modifier.padding(8.dp),
-                    )
-                },
+fun HomeScreen(
+
+) {
+    val scope = rememberCoroutineScope()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val name = "Rick Astley"
+    Scaffold(topBar = {
+        CenterAlignedTopAppBar(title = {
+            Text(
+                "Home",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontWeight = FontWeight.Black,
+                ),
+                modifier = Modifier.padding(8.dp),
             )
-        }
-    ) {
+        }, actions = {
+            IconButton(
+                onClick = {
+                    // TODO: Navigate to the details screen
+                },
+            ) {
+                Icon(
+                    Icons.Filled.AccountCircle, contentDescription = null
+                )
+            }
+        })
+    }) {
         Surface(
             modifier = Modifier.padding(it)
         ) {
@@ -48,19 +67,32 @@ fun HomeScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                
+
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Text(
+                        "Welcome back",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier,
+                        textAlign = TextAlign.Left
+                    )
+                    Text(
+                        name, style = MaterialTheme.typography.headlineLarge.copy(
+                            fontWeight = FontWeight.Black
+                        ), modifier = Modifier, textAlign = TextAlign.Left
+                    )
+                }
             }
         }
     }
 }
 
 @Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
+    uiMode = Configuration.UI_MODE_NIGHT_YES, name = "DefaultPreviewDark"
 )
 @Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
+    uiMode = Configuration.UI_MODE_NIGHT_NO, name = "DefaultPreviewLight"
 )
 @Composable
 fun HomeScreenPreview() {
