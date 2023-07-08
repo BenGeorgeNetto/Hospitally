@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar(
+fun CustomTopBar(
     text: String
 ) {
     CenterAlignedTopAppBar(
