@@ -5,13 +5,15 @@ package com.example.hospitally.ui.screens
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,18 +31,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.hospitally.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
-
+    navController: NavController
 ) {
     val name = "Rick Astley"
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(title = {
                 Text(
-                    "Home",
+                    "Hospitally",
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontWeight = FontWeight.Black,
                     ),
@@ -49,7 +53,7 @@ fun HomeScreen(
             }, actions = {
                 IconButton(
                     onClick = {
-                        // TODO: Navigate to the details screen
+                        navController.navigate("user_details")
                     },
                 ) {
                     Icon(
@@ -63,27 +67,27 @@ fun HomeScreen(
             BottomAppBar(
                 actions = {
                     IconButton(onClick = {
-                        // TODO
+                        navController.navigate("favourites")
                     }) {
                         Icon(
-                            Icons.Filled.Home,
-                            contentDescription = ""
+                            Icons.Filled.Favorite,
+                            contentDescription = "Favourites"
                         )
                     }
                     IconButton(onClick = {
-                        // TODO
+                        navController.navigate("settings")
                     }) {
-                        Icon(Icons.Filled.LocationOn, contentDescription = "")
+                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
                     }
                 },
                 floatingActionButton = {
-                    ExtendedFloatingActionButton(
-                        text = { Text("To implement") },
-                        icon = { Icon(Icons.Outlined.Add, contentDescription = "") },
-                        onClick = {
-                            // TODO
-                        }
-                    )
+                    ExtendedFloatingActionButton(text = { Text("Hospitals near me") }, icon = {
+                        Icon(
+                            Icons.Outlined.Search, contentDescription = "Hospitals near me button"
+                        )
+                    }, onClick = {
+                        navController.navigate("hospitals_near_me")
+                    })
                 }
             )
         },
@@ -115,6 +119,7 @@ fun HomeScreen(
                         ),
                         modifier = Modifier, textAlign = TextAlign.Left,
                     )
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
@@ -128,8 +133,8 @@ fun HomeScreen(
     uiMode = Configuration.UI_MODE_NIGHT_NO, name = "DefaultPreviewLight"
 )
 @Composable
-fun HomeScreenPreview() {
+private fun HomeScreenPreview() {
     AppTheme {
-        HomeScreen()
+        HomeScreen(navController = rememberNavController())
     }
 }
