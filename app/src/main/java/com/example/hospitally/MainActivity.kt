@@ -9,15 +9,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.hospitally.ui.screens.HomeScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.hospitally.navigation.Navigation
 import com.example.hospitally.ui.theme.AppTheme
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
-    val db = Firebase.firestore
-    val navController = rememberNavController()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,9 +25,16 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    HospitallyApp()
                 }
             }
         }
     }
 }
+
+@Composable
+fun HospitallyApp() {
+    val navController = rememberNavController()
+    Navigation(navController = navController)
+}
+
