@@ -56,7 +56,7 @@ fun HospitalCard(
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Distance: ",
+                text = "Distance: ${calculateDistance(hospital.lat,hospital.long)} m",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
