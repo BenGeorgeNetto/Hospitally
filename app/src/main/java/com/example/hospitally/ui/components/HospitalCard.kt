@@ -1,5 +1,5 @@
-import android.content.res.Configuration
-import android.location.Location
+package com.example.hospitally.ui.components
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,17 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.hospitally.data.models.Hospital
 
 @Composable
 fun HospitalCard(
-    name: String,
-    latitude: Double,
-    longitude: Double,
-    specialities: List<String>,
-    address: String,
-    phoneNumber: String,
+    hospital: Hospital
 ) {
     Card(
         modifier = Modifier
@@ -41,27 +36,27 @@ fun HospitalCard(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = name,
+                text = hospital.hospitalName,
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Specialities: ${specialities.joinToString()}",
+                text = "Specialities: ${hospital.specializations}",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Address: $address",
+                text = "Address: ${hospital.address}}",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Phone Number: $phoneNumber",
+                text = "Phone Number: ${hospital.contact}",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Distance: ${distanceBetween(latitude, longitude)}",
+                text = "Distance: ",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
@@ -69,31 +64,14 @@ fun HospitalCard(
     }
 }
 
-fun distanceBetween(latitude: Double, longitude: Double): Float {
-    val currentLocation = Location("currentLocation")
-    currentLocation.latitude = latitude
-    currentLocation.longitude = longitude
-    val hospitalLocation = Location("hospitalLocation")
-    hospitalLocation.latitude = 12.9716
-    hospitalLocation.longitude = 77.5946
-    return currentLocation.distanceTo(hospitalLocation) / 1000
-}
-
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES, name = "DefaultPreviewDark"
-)
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO, name = "DefaultPreviewLight"
-)
-@Composable
-private fun HospitalCardPreview(
-) {
-    HospitalCard(
-        name = "Apollo Hospital",
-        latitude = 12.9716,
-        longitude = 77.5946,
-        specialities = listOf("Cardiology", "Neurology"),
-        address = "Bannerghatta Road, Bengaluru",
-        phoneNumber = "080 2630 4050",
-    )
-}
+//@Preview(
+//    uiMode = Configuration.UI_MODE_NIGHT_YES, name = "DefaultPreviewDark"
+//)
+//@Preview(
+//    uiMode = Configuration.UI_MODE_NIGHT_NO, name = "DefaultPreviewLight"
+//)
+//@Composable
+//private fun HospitalCardPreview(
+//) {
+//
+//}
