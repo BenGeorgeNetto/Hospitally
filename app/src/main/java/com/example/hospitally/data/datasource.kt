@@ -1,6 +1,6 @@
 package com.example.hospitally.data
 
-import com.example.hospitally.models.Hospital
+import com.example.hospitally.data.models.Hospital
 
 class Datasource {
     fun loadHospitals(): List<Hospital> {

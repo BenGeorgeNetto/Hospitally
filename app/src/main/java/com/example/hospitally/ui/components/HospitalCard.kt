@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.hospitally.data.models.Hospital
+import com.example.hospitally.utils.calculateDistance
 
 @Composable
 fun HospitalCard(
@@ -56,7 +57,15 @@ fun HospitalCard(
                 modifier = Modifier.padding(8.dp),
             )
             Text(
-                text = "Distance: ${calculateDistance(hospital.lat,hospital.long)} m",
+                text = "Distance: ${
+                    (
+                            calculateDistance(
+                                hospital.lat,
+                                hospital.long,
+                                8.54906,
+                                76.93853
+                            ) / 1000)
+                } km",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(8.dp),
             )
